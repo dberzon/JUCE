@@ -32,11 +32,6 @@ bool FileChooser::isPlatformDialogAvailable()
     return false;
 }
 
-void FileChooser::showPlatformDialog (Array<File>& /* results */,
-                                      const String& /* title */, const File& /* file */, const String& /* filters */,
-                                      bool /* isDirectory */, bool /* selectsFiles */,
-                                      bool /* isSave */, bool /* warnAboutOverwritingExistingFiles */,
-                                      bool /*treatFilePackagesAsDirs*/,
-                                      bool /* selectMultipleFiles */, FilePreviewComponent*) {}
+FileChooser::Pimpl* FileChooser::showPlatformDialog (FileChooser& /* owner */, int /* flags */, FilePreviewComponent*) {}
 
 } // namespace juce

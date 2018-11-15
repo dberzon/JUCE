@@ -255,17 +255,6 @@ JUCE_API bool JUCE_CALLTYPE Process::isForegroundProcess()
 JUCE_API void JUCE_CALLTYPE Process::makeForegroundProcess() {}
 JUCE_API void JUCE_CALLTYPE Process::hide() {}
 
-//==============================================================================
-void ModifierKeys::updateCurrentModifiers() noexcept
-{
-    currentModifiers = LinuxComponentPeer::currentModifiers;
-}
-
-ModifierKeys ModifierKeys::getCurrentModifiersRealtime() noexcept
-{
-    return LinuxComponentPeer::currentModifiers;
-}
-
 
 //==============================================================================
 void Desktop::setKioskComponent (Component* /* comp */, bool /* enableOrDisable */, bool /* allowMenusAndBars */) {}
@@ -279,7 +268,7 @@ ComponentPeer* Component::createNewPeer (int styleFlags, void* nativeWindowToAtt
 }
 
 //==============================================================================
-void Desktop::Displays::findDisplays (float /* masterScale */) {}
+void Displays::findDisplays (float /* masterScale */) {}
 
 bool MouseInputSource::SourceList::canUseTouch()
 {
@@ -367,12 +356,13 @@ void* MouseCursor::createStandardMouseCursor (MouseCursor::StandardCursorType /*
 void MouseCursor::showInWindow (ComponentPeer* /* peer */) const {}
 
 bool DragAndDropContainer::performExternalDragDropOfFiles (const StringArray& /* files */, const bool /* canMoveFiles */,
-                                                           Component* /* sourceComp */)
+                                                           Component* /* sourceComp */, std::function<void()> /* callback */)
 {
     return false;
 }
 
-bool DragAndDropContainer::performExternalDragDropOfText (const String& /* text */, Component* /* sourceComp */)
+bool DragAndDropContainer::performExternalDragDropOfText (const String& /* text */, Component* /* sourceComp */,
+                                                          std::function<void()> /* callback */)
 {
     return false;
 }
